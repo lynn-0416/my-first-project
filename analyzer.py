@@ -13,7 +13,7 @@ from config import (
 )
 
 # =========================
-# time filter（核心修正）
+# time filter
 # =========================
 def filter_recent(history, days=7):
     now = int(time.time())
@@ -92,7 +92,7 @@ def compute_liquidity(trade_count, total_qty):
 # =========================
 def analyze_item(item_id, item_data, name):
 
-    # ❌ 無掛單直接跳過
+    # 無掛單直接跳過
     if not item_data.get("listings"):
         return None
 
@@ -101,13 +101,13 @@ def analyze_item(item_id, item_data, name):
     # =========================
     recent = item_data.get("recentHistory", [])
 
-    # ✔ 只取最近7天（關鍵修正）
+    # 只取最近7天（關鍵修正）
     recent = filter_recent(recent, days=7)
 
-    # ✔ 基本清理
+    # 基本清理
     recent = clean_history(recent)
 
-    # ✔ 限制長度
+    # 限制長度
     recent = recent[:LAST_HISTORY_LIMIT]
 
     # =========================

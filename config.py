@@ -1,5 +1,6 @@
 # config.py
 
+#可把此參數替還成其他伺服器或是DC的名稱，請參考universalis.app的API文件
 server = "Typhon"
 
 LAST_HISTORY_LIMIT = 50

@@ -2,9 +2,9 @@ import time
 import statistics
 
 
-# =========================
+
 # 1. 時間 + 基本清理
-# =========================
+
 def filter_recent_history(history, days=7):
     """
     只保留最近 N 天 + 基本資料清理
@@ -36,9 +36,9 @@ def filter_recent_history(history, days=7):
     return cleaned
 
 
-# =========================
-# 2. 趨勢分析（升級版）
-# =========================
+
+# 2. 趨勢分析
+
 def analyze_trend(history):
     """
     回傳：
@@ -57,9 +57,9 @@ def analyze_trend(history):
 
     prices = [h["pricePerUnit"] for h in history]
 
-    # =========================
+    
     # 切三段（前 / 中 / 後）
-    # =========================
+    
     split = max(1, len(prices) // 3)
 
     early = prices[:split]
@@ -71,9 +71,9 @@ def analyze_trend(history):
     change = (late_avg - early_avg) / early_avg
 
 
-    # =========================
+    
     # 波動率（市場穩定性）
-    # =========================
+    
     if len(prices) > 1:
         std = statistics.stdev(prices)
         avg = sum(prices) / len(prices)
@@ -82,21 +82,21 @@ def analyze_trend(history):
         volatility = 0
 
 
-    # =========================
+    
     # 判斷邏輯
-    # =========================
+    
 
-    # 🚨 高波動優先判斷
+    # 高波動優先判斷
     if volatility > 0.25:
         return "不穩"
 
-    # 📈 穩定上升
+    # 穩定上升
     if change > 0.05:
         return "上漲"
 
-    # 📉 穩定下降
+    # 穩定下降
     if change < -0.05:
         return "下跌"
 
-    # ➡ 平穩
+    # 平穩
     return "平穩"

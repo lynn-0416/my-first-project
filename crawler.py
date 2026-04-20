@@ -18,9 +18,9 @@ session.mount("http://", adapter)
 
 api_cache = {}
 
-# =========================
+
 # current market data
-# =========================
+
 def fetch_market_data(item_batch):
     ids_str = ",".join(map(str, item_batch))
 
@@ -38,17 +38,19 @@ def fetch_market_data(item_batch):
         return {"items": {}}
 
 
-# =========================
+
+
 # marketable items
-# =========================
+
+
 def fetch_marketable_items():
     url = "https://universalis.app/api/v2/marketable"
     return requests.get(url, timeout=10).json()
 
 
-# =========================
+
 # history 
-# =========================
+
 def fetch_item_history(item_id):
     url = f"https://universalis.app/api/v2/history/{server}/{item_id}"
 

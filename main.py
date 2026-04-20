@@ -14,9 +14,9 @@ from trend_analyzer import analyze_trend
 
 print("開始分析市場資料...")
 
-# =========================
+
 # item data
-# =========================
+
 with open("xiv_items.json", "r", encoding="utf-8") as f:
     all_items = json.load(f)
 
